@@ -24,7 +24,7 @@ const {
         }
         return res.send({
           success: true,
-          message: 'Saved Succeefully'
+          message: 'Saved Successfully'
         });
     });  
 
