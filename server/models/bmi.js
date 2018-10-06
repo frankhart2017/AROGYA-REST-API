@@ -9,6 +9,11 @@ const bmiSchema = new mongoose.Schema({
   bmi: {
     type: String,
     default: ''
+  },
+  
+  bmr: {
+    type: String,
+    default: ''
   }
 
 
