@@ -124,7 +124,7 @@ module.exports = (app) => {
        if (users.length != 1) {
         return res.send({
           success: false,
-          message: 'Error: Invalid.'
+          message: 'Error: Account does not exist.'
         });
       }
         const user = users[0];
@@ -132,7 +132,7 @@ module.exports = (app) => {
         if(!user.validPassword(password)) {
           return res.send({
             success: false,
-            message: 'Error: Invalid.'
+            message: 'Error: Invalid credentials.'
           });
         }
 
