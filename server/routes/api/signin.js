@@ -49,7 +49,7 @@ module.exports = (app) => {
       } else if (previousUsers.length > 0) {
         return res.send({
           success: false,
-          message: 'Error: Account already exist.'
+          message: 'Error: Account already exists.'
         });
       }
       // Save the new user
