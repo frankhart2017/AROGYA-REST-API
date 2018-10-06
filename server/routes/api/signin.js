@@ -9,7 +9,8 @@ module.exports = (app) => {
     const {
       Name,
       password,
-      dob
+      dob,
+      gender
     } = body;
     let {
       email
@@ -57,7 +58,7 @@ module.exports = (app) => {
       newUser.password = newUser.generateHash(password);
       newUser.dob = dob;
       newUser.Name = Name;
-    
+      newUser.gender = gender;
       newUser.save((err, user) => {
         if (err) {
           return res.send({
