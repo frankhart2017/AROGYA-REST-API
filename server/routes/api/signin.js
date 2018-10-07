@@ -10,7 +10,8 @@ module.exports = (app) => {
       Name,
       password,
       dob,
-      gender
+      gender,
+      accountType
     } = body;
     let {
       email
@@ -59,6 +60,7 @@ module.exports = (app) => {
       newUser.dob = dob;
       newUser.Name = Name;
       newUser.gender = gender;
+      newUser.accountType = accountType;
       newUser.save((err, user) => {
         if (err) {
           return res.send({
