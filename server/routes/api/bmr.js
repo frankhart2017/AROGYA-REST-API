@@ -11,19 +11,14 @@ const {
   bmr
   } = body;
   
-  let cond = {uid};
+ 
   
- BMI.findOneAndUpdate(cond, {$set:{bmi:bmi}}, {new:true}, function (err,doc) {
+ BMI.findOneAndUpdate({uid:uid}, {$set:{bmr:bmr}}, {new:true}, function (err,doc) {
  if (err) {
- return res.send({
-            success: false,
-            message: 'Error: Server error'
-          });
+
  }
-  return res.send({
-          success: true,
-          message: 'Saved Successfully'
-  });
+  
+ 
  });
   
   
