@@ -11,20 +11,20 @@ const {
   bmr
   } = body;
   
-  BMI.findByIdAndUpdate(
-    req.params.uid,
-    
-    req.body,
-    
-    {new:true},
-    
-    (err,up) => {
-    
-    if (err) return res.status(500).send(err);
-    return res.send(up);
-    
-    }
-    );
+  let cond = {uid};
+  
+ BMI.findOneAndUpdate(cond, {$set:{bmi:bmi}}, {new:true}, function (err,doc) {
+ if (err) {
+ return res.send({
+            success: false,
+            message: 'Error: Server error'
+          });
+ }
+  return res.send({
+          success: true,
+          message: 'Saved Successfully'
+  });
+ });
   
   
   const newBmi = new BMI();
