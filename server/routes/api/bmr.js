@@ -1,44 +1,65 @@
 const BMI = require('../../models/BMI');
 module.exports = (app) => {
 
-app.post('/api/account/bmr', (req,res,next) => {
+  app.post('/api/account/bmr', (req, res, next) => {
 
-const { body } = req;
+    const { body } = req;
 
-const {
-  uid,
-  bmi,
-  bmr
-  } = body;
-  
- 
-  
- BMI.findOneAndUpdate({uid:uid}, {$set:{bmr:bmr}}, {new:true}, function (err,doc) {
- if (err) {
+    const {
+      uid,
+      bmi,
+      bmr
+    } = body;
 
- }
-  
- 
- });
-  
-  
-  const newBmi = new BMI();
-  newBmi.uid = uid;
-  newBmi.bmi = bmi;
-  newBmi.bmr = bmr;
-  newBmi.save((err, user) => {
-        if (err) {
+
+
+    BMI.find({ uid: uid }, function (err, user) {
+
+      if (err) {
+        res.send(err);
+      }
+      console.log(user);
+      if (user && user.length) {
+
+        BMI.findOneAndUpdate({ uid: uid }, { $set: { bmr: bmr } }, { new: true }, function (err, doc) {
+          if (err) {
+
+          }
           return res.send({
-            success: false,
-            message: 'Error: Server error'
-          });
-        }
-        return res.send({
-          success: true,
-          message: 'Saved Successfully'
-        });
-    });  
+            success: true,
+            message: "FUCK OFF"
+          })
 
-});
+        });
+
+      }
+      else {
+
+        const newBmi = new BMI();
+        newBmi.uid = uid;
+        newBmi.bmi = bmi;
+        newBmi.bmr = bmr;
+        newBmi.save((err, user) => {
+          if (err) {
+            return res.send({
+              success: false,
+              message: 'Error: Server error'
+            });
+          }
+          return res.send({
+            success: true,
+            message: 'Saved Successfully'
+          });
+        });
+
+      }
+    })
+
+
+
+
+
+
+  });
 
 }
