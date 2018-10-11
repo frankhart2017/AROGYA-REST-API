@@ -1,5 +1,6 @@
 const User = require('../../models/User');
 const UserSession = require('../../models/UserSession');
+const Daily = require('../../models/Daily');
 module.exports = (app) => {
   /*
    * Sign up
@@ -66,6 +67,11 @@ module.exports = (app) => {
             message: 'Error: Server error'
           });
         }
+        const newDaily = new Daily();
+        newDaily.uid = newUser._id;
+        newDaily.save((err,u) => {
+          console.log(u)
+        })
         return res.send({
           success: true,
           message: 'Signed up'
