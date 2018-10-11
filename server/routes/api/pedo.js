@@ -20,17 +20,43 @@ module.exports = (app) => {
             }
             console.log(user);
             if (user && user.length) {
-
-                Pedo.findOneAndUpdate({ uid: uid }, { $set: { cb: cb, nos: nos } }, { new: true }, function (err, doc) {
-                    if (err) {
-
-                    }
-                    return res.send({
-                        success: true,
-                        message: "FUCK OFF"
-                    })
-
-                });
+                if(cb.length == 0) {
+                    Pedo.findOneAndUpdate({ uid: uid }, { $set: {nos: nos } }, { new: true }, function (err, doc) {
+                        if (err) {
+    
+                        }
+                        return res.send({
+                            success: true,
+                            message: "FUCK OFF"
+                        })
+    
+                    });
+                }
+                else if(nos.length == 0) {
+                    Pedo.findOneAndUpdate({ uid: uid }, { $set: { cb: cb} }, { new: true }, function (err, doc) {
+                        if (err) {
+    
+                        }
+                        return res.send({
+                            success: true,
+                            message: "FUCK OFF"
+                        })
+    
+                    }); 
+                }
+                else {
+                    Pedo.findOneAndUpdate({ uid: uid }, { $set: { cb: cb, nos: nos } }, { new: true }, function (err, doc) {
+                        if (err) {
+    
+                        }
+                        return res.send({
+                            success: true,
+                            message: "FUCK OFF"
+                        })
+    
+                    });
+                }
+            
 
             }
             else {
