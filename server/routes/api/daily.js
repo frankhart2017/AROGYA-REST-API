@@ -74,4 +74,33 @@ module.exports = (app) => {
         });
     
     });
+
+
+
+
+    app.post('/api/account/fetchdaily', (req, res, next) => {
+
+        const { body } = req;
+    
+        const {
+            uid,
+        } = body;
+    
+        
+    
+        Daily.find({ uid: uid }, function (err, user) {
+            if (err) {
+    
+            }
+            console.log(user[0]);
+            return res.send(user[0]
+    
+            )
+    
+        });
+    
+    });
+
+
+
 }
